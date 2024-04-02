@@ -91,3 +91,8 @@ test('Execute SQL Query with Not Equal to', async () => {
     expect(result.length).toEqual(2);
     expect(result[0]).toHaveProperty('name');
 });
+
+test('Execute SQL Query with invalid syntax', async () => {
+    const invalidQuery = 'SELECT FROM sample WHERE age != 25'; // missing fields to select
+    await expect(executeSELECTQuery(invalidQuery)).rejects.toThrow();
+});
